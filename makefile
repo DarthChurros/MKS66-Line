@@ -3,7 +3,7 @@ ifdef MEM
 	VG = valgrind --leak-check=full
 endif
 
-all: main.o
+all: main.o draw.o
 	gcc $(DATA) -o program main.o draw.o
 
 main.o: main.c
