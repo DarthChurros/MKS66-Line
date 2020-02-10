@@ -4,10 +4,13 @@ ifdef MEM
 endif
 
 all: main.o
-	gcc $(DATA) -o program main.o
+	gcc $(DATA) -o program main.o draw.o
 
 main.o: main.c
 	gcc $(DATA) -c main.c
+
+draw.o: draw.c draw.h
+	gcc $(DATA) -c draw.c
 
 run:
 	$(VG) ./program $(ARGS)
