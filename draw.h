@@ -7,8 +7,7 @@ struct pixel {
   unsigned char b;
 };
 
-void init_pixel(struct pixel pix);
-void draw_line(struct pixel** img_ary);
+void draw_line(struct pixel** img_ary, int x1, int y1, int x2, int y2);
 void init_image(struct pixel** img_ary);
 void write_image(struct pixel** img_ary);
 

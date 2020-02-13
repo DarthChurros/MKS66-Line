@@ -4,16 +4,30 @@
 #include <unistd.h>
 #include "draw.h"
 
-void init_pixel(struct pixel pix) {
+void draw_line(struct pixel** img_ary, int x1, int y1, int x2, int y2) {
 
 }
 
-void draw_line(struct pixel** img_ary) {
+struct pixel** init_image(size_t width, size_t height) {
+  struct pixel** img_ary = malloc((height + 1) * sizeof(struct pixel*));
+  img_ary[height] = NULL;
 
-}
+  struct pixel** row = **img_ary;
+  struct pixel* pix = *row;
 
-void init_image(struct pixel** img_ary) {
+  while (row) {
+    pix = *row;
+    *pix = calloc(width, sizeof(struct pixel));
+    int i;
 
+    for (i = 0; i < width; i++, pix++) {
+      pix->r=0;
+      pix->g=0;
+      pix->b=0;
+    }
+  }
+
+  return img_ary;
 }
 
 void write_image(struct pixel** img_ary) {
