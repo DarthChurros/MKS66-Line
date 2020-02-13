@@ -4,8 +4,13 @@
 #include <unistd.h>
 #include "draw.h"
 
-void draw_line(struct pixel** img_ary, int x1, int y1, int x2, int y2) {
+void plot(struct pixel** img_ary, struct pixel color, int x, int y) {
+  img_ary[y][x] = color;
+}
 
+void draw_line(struct pixel** img_ary, struct pixel color, int x1, int y1, int x2, int y2) {
+  // int dx = x2 - x1;
+  // int dy = y2 - y1;
 }
 
 struct pixel** init_image(size_t width, size_t height) {
