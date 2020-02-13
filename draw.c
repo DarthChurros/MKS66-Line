@@ -12,15 +12,16 @@ struct pixel** init_image(size_t width, size_t height) {
   struct pixel** img_ary = malloc((height + 1) * sizeof(struct pixel*));
   img_ary[height] = NULL;
 
-  struct pixel** row = **img_ary;
+  struct pixel** row = img_ary;
   struct pixel* pix = *row;
 
-  while (row) {
+  int i;
+  for (i = 0; i < height; i++, row++) {
+    *row = calloc(width, sizeof(struct pixel));
     pix = *row;
-    *pix = calloc(width, sizeof(struct pixel));
-    int i;
+    int j;
 
-    for (i = 0; i < width; i++, pix++) {
+    for (j = 0; j < width; j++, pix++) {
       pix->r=0;
       pix->g=0;
       pix->b=0;
@@ -39,9 +40,9 @@ void write_image(struct pixel** img_ary) {
   int k;
   for (i = 0; i < 512; i++) {
     for (j = 0; j < 512; j++) {
-      fprintf(img, "%d ", img_ary[i][j].r));
-      fprintf(img, "%d ", img_ary[i][j].g));
-      fprintf(img, "%d ", img_ary[i][j].b));
+      fprintf(img, "%d ", img_ary[i][j].r);
+      fprintf(img, "%d ", img_ary[i][j].g);
+      fprintf(img, "%d ", img_ary[i][j].b);
     }
     fprintf(img, "\n");
   }
