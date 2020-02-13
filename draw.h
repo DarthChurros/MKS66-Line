@@ -8,7 +8,7 @@ struct pixel {
 };
 
 void draw_line(struct pixel** img_ary, int x1, int y1, int x2, int y2);
-void init_image(size_t width, size_t height);
+struct pixel** init_image(size_t width, size_t height);
 void write_image(struct pixel** img_ary);
 
 
