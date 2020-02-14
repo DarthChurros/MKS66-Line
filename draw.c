@@ -18,6 +18,14 @@ void draw_line(struct pixel** img_ary, struct pixel color, int x1, int y1, int x
     y2 = y1 ^ y2;
     y1 = y1 ^ y2;
   }
+
+  int a = y2 - y1;
+  int b = x1 - x2;
+
+  if (!b) //vertical {
+    int y;
+    for (y = y1; y <= y2; y++) plot(x1, y);
+  }
 }
 
 struct pixel** init_image(size_t width, size_t height) {
