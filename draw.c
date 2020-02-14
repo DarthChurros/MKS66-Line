@@ -22,9 +22,25 @@ void draw_line(struct pixel** img_ary, struct pixel color, int x1, int y1, int x
   int a = y2 - y1;
   int b = x1 - x2;
 
-  if (!b) //vertical {
+  if (!b) { //vertical
     int y;
-    for (y = y1; y <= y2; y++) plot(x1, y);
+    for (y = y1; y <= y2; y++) plot(img_ary, color, x1, y);
+    return;
+  }
+
+  if (a * b < 0 && a < -b) { //octant 1
+    int err = 2 * a + b;
+    while (x1 < x2) {
+      plot(img_ary, color, x1, y1);
+      if (err > 0) {
+        y1++;
+        err += b;
+      }
+      x1++;
+      err += a;
+    }
+  } else {
+    printf("bad coords\n");
   }
 }
 
