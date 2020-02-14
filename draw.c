@@ -9,8 +9,15 @@ void plot(struct pixel** img_ary, struct pixel color, int x, int y) {
 }
 
 void draw_line(struct pixel** img_ary, struct pixel color, int x1, int y1, int x2, int y2) {
-  // int dx = x2 - x1;
-  // int dy = y2 - y1;
+  if (x1 > x2) {
+    x1 = x1 ^ x2;
+    x2 = x1 ^ x2;
+    x1 = x1 ^ x2;
+
+    y1 = y1 ^ y2;
+    y2 = y1 ^ y2;
+    y1 = y1 ^ y2;
+  }
 }
 
 struct pixel** init_image(size_t width, size_t height) {
