@@ -13,6 +13,7 @@ int main() {
   draw_line(image, (struct pixel){255,255,255,0}, 200, 200, 300, 350);
   draw_line(image, (struct pixel){255,0,255,0}, 300, 200, 450, 100);
   draw_line(image, (struct pixel){0,0,255,0}, 250, 200, 450, 200);
+  draw_line(image, (struct pixel){255,0,0,0}, 150, 500, 200, 150);
 
   write_image(image);
   return 0;
