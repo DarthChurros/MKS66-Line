@@ -54,7 +54,7 @@ void draw_line(struct pixel** img_ary, struct pixel color, int x1, int y1, int x
     }
   } else {
     if (a > b) { // octant 3
-      int err = -2 * a + b;
+      int err = -2 * a - b;
       while (x1 < x2) {
         plot(img_ary, color, x1, y1);
         if (err < 0) {
@@ -64,6 +64,8 @@ void draw_line(struct pixel** img_ary, struct pixel color, int x1, int y1, int x
         x1++;
         err += a;
       }
+    } else {
+
     }
   }
 }
