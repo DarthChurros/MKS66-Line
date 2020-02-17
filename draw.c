@@ -54,7 +54,7 @@ void draw_line(struct pixel** img_ary, struct pixel color, int x1, int y1, int x
     }
   } else {
     if (a > b) { // octant 3
-      
+
     }
   }
 }
@@ -68,15 +68,16 @@ struct pixel** init_image(size_t width, size_t height) {
 
   int i;
   for (i = 0; i < height; i++, row++) {
-    *row = calloc(width, sizeof(struct pixel));
-    pix = *row;
-    int j;
-
-    for (j = 0; j < width; j++, pix++) {
-      pix->r=0;
-      pix->g=0;
-      pix->b=0;
-    }
+    *row = calloc(width + 1, sizeof(struct pixel));
+    // pix = *row;
+    // int j;
+    //
+    // for (j = 0; j < width; j++, pix++) {
+    //   pix->r=0;
+    //   pix->g=0;
+    //   pix->b=0;
+    // }
+    (*row)[width].blank = 1;
   }
 
   return img_ary;
@@ -84,16 +85,21 @@ struct pixel** init_image(size_t width, size_t height) {
 
 void write_image(struct pixel** img_ary) {
   FILE* img = fopen("image.ppm", "w");
-  fprintf(img, "P3\n512 512 255\n");
 
-  int i;
-  int j;
-  int k;
-  for (i = 0; i < 512; i++) {
-    for (j = 0; j < 512; j++) {
-      fprintf(img, "%d ", img_ary[i][j].r);
-      fprintf(img, "%d ", img_ary[i][j].g);
-      fprintf(img, "%d ", img_ary[i][j].b);
+  struct pixel** row;
+  struct pixel* pix;
+
+  for (row = img_ary; *row; row++);
+  for (pix = *img_ary; !pix->blank; pix++);
+
+  fprintf(img, "P3\n%ld %ld 255\n", pix - *img_ary, row - img_ary);
+
+  for (row--; row >= img_ary; row--) {
+    // printf("%p, %p\n", row, img_ary);
+    for (pix = *row; !pix->blank; pix++) {
+      fprintf(img, "%d ", pix->r);
+      fprintf(img, "%d ", pix->g);
+      fprintf(img, "%d ", pix->b);
     }
     fprintf(img, "\n");
   }

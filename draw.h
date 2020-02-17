@@ -5,6 +5,7 @@ struct pixel {
   unsigned char r;
   unsigned char g;
   unsigned char b;
+  unsigned char blank;
 };
 
 void plot(struct pixel** img_ary, struct pixel color, int x, int y);
