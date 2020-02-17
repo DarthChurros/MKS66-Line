@@ -14,6 +14,8 @@ int main() {
 
   draw_line(image, (struct pixel){255,255,255,0}, 200, 200, 300, 350);
 
+  draw_line(image, (struct pixel){255,0,255,0}, 300, 200, 450, 100);
+
   write_image(image);
   return 0;
 }
