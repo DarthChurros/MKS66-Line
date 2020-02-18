@@ -3,17 +3,19 @@
 #include "draw.h"
 
 int main() {
-  struct pixel** image = init_image(512, 512);
+  struct pixel** image = init_image(2048, 2048);
 
+  int i;
+  struct pixel color = {255, 128, 0, 0};
 
-  plot(image, (struct pixel){255,0,0,0}, 256,256);
+  for (i = 0; i < 2048; i+=16) {
+    draw_line(image, color, 0, i, 2047, 2047-i);
+    draw_line(image, color, i, 0, 2047-i, 2047);
 
-  draw_line(image, (struct pixel){0,255,127,0}, 100, 100, 300, 220);
-  draw_line(image, (struct pixel){0,255,255,0}, 200, 100, 200, 400);
-  draw_line(image, (struct pixel){255,255,255,0}, 200, 200, 300, 350);
-  draw_line(image, (struct pixel){255,0,255,0}, 300, 200, 450, 100);
-  draw_line(image, (struct pixel){0,0,255,0}, 250, 200, 450, 200);
-  draw_line(image, (struct pixel){255,0,0,0}, 150, 500, 200, 150);
+    color.r -= 2;
+    color.g += 2;
+    color.b += 2;
+  }
 
   write_image(image);
   return 0;
