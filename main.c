@@ -17,6 +17,12 @@ int main() {
     color.b += 2;
   }
 
+  color.r += 2;
+  color.g -= 2;
+  color.b -= 2;
+
+  draw_line(image, color, 0, 2047, 2047, 0);
+
   write_image(image);
   return 0;
 }
